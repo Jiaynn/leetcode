@@ -24,6 +24,7 @@ function merge(arr, L, mid, R) {
   let p1 = L;
   let p2 = mid + 1;
   let res = 0;
+  let i = 0;
   while (p1 <= mid && p2 <= R) {
     res += arr[p1] < arr[p2] ? (R - p2 + 1) * arr[p1] : 0;
     help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
