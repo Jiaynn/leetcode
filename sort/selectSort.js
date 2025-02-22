@@ -5,7 +5,6 @@ function selectSort(arr) {
       minIndex = arr[j] < arr[minIndex] ? j : minIndex;
     }
     swap(arr, i, minIndex);
-    console.log('测试提交');
   }
   return arr;
 }
