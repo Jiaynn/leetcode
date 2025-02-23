@@ -7,23 +7,28 @@ function quickSort(arr, L, R) {
     //随机选择一个基准元素
     swap(arr, Math.floor(Math.random() * (R - L + 1)) + L, R);
     let p = partition(arr, L, R);
-    quickSort(arr, L, p[0] - 1);
-    quickSort(arr, p[1] + 1, R);
+    quickSort(arr, L, p - 1);
+    quickSort(arr, p + 1, R);
   }
 }
-
 function partition(arr, L, R) {
-  let less = L - 1;
-  let more = R;
-  while (L < more) {
-    if (arr[L] < arr[R]) {
-      swap(arr, ++less, L++);
-    } else if (arr[L] > arr[R]) {
-      swap(arr, --more, L);
-    } else {
-      L++;
+  let pivot = arr[R]; // 选择基准元素为数组的最后一个元素
+  let i = L - 1; // i 是小于基准元素区域的最后一个元素的索引
+
+  for (let j = L; j < R; j++) {
+    if (arr[j] < pivot) {
+      i++; // 找到一个小于基准元素的元素
+      swap(arr, i, j); // 交换元素
     }
   }
-  swap(arr, more, R);
-  return [less + 1, more];
+
+  // 将基准元素放到正确的位置，即i+1的位置
+  swap(arr, i + 1, R);
+  return i + 1; // 返回基准元素的索引
+}
+
+function swap(arr, i, j) {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
 }
